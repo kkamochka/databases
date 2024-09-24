@@ -1,5 +1,4 @@
 CREATE DATABASE lab 1;
-USE "lab 1";
 CREATE TABLE users (
     id INT AUTO_INCREMENT,
     first_name VARCHAR(50),
