@@ -24,6 +24,7 @@ CREATE TABLE orders(
     comission INT
     );
 
+DROP TABLE salesman;
 CREATE TABLE salesman (
     salesman_id INT PRIMARY KEY,
     name VARCHAR(255),
@@ -66,7 +67,7 @@ SELECT AVG(puch_amount) AS total_purchase_amount
 FROM orders;
 
 /*5. Select how many customer have listed their names.*/
-SELECT COUNT(DISTINCT cust_name) AS number_of_customers
+SELECT COUNT(DISTINCT cust_name) AS number_of_customers /* if names duplicated6 it will be counted just once*/
 FROM customers;
 
 /* 6. Select the minimum purchase amount of all the orders.*/
@@ -75,11 +76,27 @@ FROM orders;
 
 /* 7. Select customer with all information whose name ends with the
 letter 'b'.*/
-SELECT *
-FROM customers
-WHERE cust_name LIKE '%b';
+SELECT * FROM customers
+WHERE cust_name LIKE '%o';
 
-/* 8. Select the average purchase amount of all orders made in the
-last 30 days.*/
-SELECT AVG(puch_amount) AS average_purchase_amount
-FROM orders
+/*8. Select orders which made by customers from ‘New York’.*/
+SELECT * FROM orders
+WHERE city = 'New York';
+
+/*9. Select customers with all information who has order with
+purchase amount more than 10.*/
+SELECT * FROM customers
+JOIN orders ON customers.customer_id = orders.customer_id
+WHERE puch_amount > 10;
+
+/*10. Select total grade of all customers.*/
+SELECT SUM(grade) AS total_grade
+FROM customers;
+
+/*11. Select all customers who have listed their names*/
+SELECT * FROM customers
+WHERE cust_name IS NOT NULL;
+
+/*12. Select the maximum grade of all the customers.*/
+SELECT MAX(grade) AS maximum_grade
+FROM customers;
